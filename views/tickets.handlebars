@@ -1,0 +1,87 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Tickets</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="../public/styles/productionPage.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+        <div class="oval">
+            <h1>TICKETS</h1>
+        </div>
+        <br>
+        <button type="button" onclick="window.location.href = '/';">Home</button>
+        <br>
+        <br>
+        <div class="row">
+            <div class="columnProduction">
+                <div class="production">
+                    <h2>{{production.title}}</h2>
+                    <img src={{production.posterURL}} alt="Production Poster" style="width:180px;height:279px;" />
+                    <p>{{production.description}}</p>
+                    <p>From: <b>{{production.shownFrom}}</b> To: <b>{{production.shownTo}}</b></p>
+                </div>
+            </div>
+            <div class="columnDetails">
+                <div class="details">
+                    <table class="greyGridTable">
+                        <thead>
+                            <tr>
+                                <th>Low price</th>
+                                <th>Medium price</th>
+                                <th>High price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{{show.lowPrice}}£</th>
+                                <th>{{show.midPrice}}£</th>
+                                <th>{{show.highPrice}}£</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table class="greyGridTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Starts</th>
+                                <th>Ends</th>
+                                <th>Low price seats left</th>
+                                <th>Medium price seats left</th>
+                                <th>High price seats left</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{{show.date}}</th>
+                                <th>{{show.timeFrom}}</th>
+                                <th>{{show.timeTo}}</th>
+                                <th>{{show.lowSeatsLeft}}</th>
+                                <th>{{show.midSeatsLeft}}</th>
+                                <th>{{show.highSeatsLeft}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <div class="form">
+                    <p>Please select the number of seats for desired price bands: </p> 
+                        <form action="/shoppingCart" method="POST">
+                            <input type="hidden" name="title" value="{{production.title}}" />
+                            <input type="hidden" name="date" value="{{show.date}}" />
+                            <input type="hidden" name="time" value="{{show.timeFrom}}" />
+                            <p>Low priced seats: <input type="number" name="low" min="0" max="{{show.lowSeatsLeft}}" placeholder="{{show.lowSeatsLeft}} available"></p>
+                            <p>Medium priced seats: <input type="number" name="mid" min="0" max="{{show.midSeatsLeft}}" placeholder="{{show.midSeatsLeft}} available"></p>
+                            <p>High priced seats: <input type="number" name="high" min="0" max="{{show.highSeatsLeft}}" placeholder="{{show.highSeatsLeft}} available"></p>
+                            <p><input type="submit" value="Book tickets"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

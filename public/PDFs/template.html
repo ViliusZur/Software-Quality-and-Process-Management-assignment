@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+ <html>
+    <head>
+        <mate charest="utf-8" />
+        <title>Hello world!</title>
+    </head>
+    <body>
+        <p>Booking summary for {{username}}: </p>
+        <p>Date of purchase: {{date}}</p>
+        <p>Time of purchase: {{time}}</p>
+            {{#each items}}
+                <table>
+                    <tr>
+                        <th>{{this.title}}</th>
+                    </tr>
+                    <tr>
+                        <th>Date: </th>
+                        <th>{{this.date}}</th>
+                    </tr>
+                    <tr>
+                        <th>Time: </th>
+                        <th>{{this.time}}</th>
+                    </tr>
+                    <tr>
+                        <th>Number of low seats: </th>
+                        <th>{{this.lowBooked}}</th>
+                    </tr>
+                    <tr>
+                        <th>Number of medium seats: </th>
+                        <th>{{this.midBooked}}</th>
+                    </tr>
+                    <tr>
+                        <th>Number of high seats: </th>
+                        <th>{{this.highBooked}}</th>
+                    </tr>
+                    <tr>
+                        <th>Price: </th>
+                        <th>{{this.totalPrice}}£</th>
+                    </tr>
+                </table>
+                <br>
+            {{/each}}
+            <table>
+                <tr>
+                    <th>Total price: </th>
+                    <th>{{total}}£</th>
+                </tr>
+            </table>
+    </body>
+</html>

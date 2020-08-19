@@ -1,0 +1,89 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Shopping cart</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="../public/styles/shoppingCart.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="oval">
+			<h1>SHOPPING CART</h1>
+		</div>
+		<br>
+		<button type="button" onclick="window.location.href = '/';">Home</button>
+		<br>
+		<br>
+		<br>
+		<div class="total">
+			<form action="/payment" method="GET">
+				<input type="hidden" name="items" value="{{items}}" />
+				<input type="hidden" name="totalPrice" value="{{total}}" />
+				<p>Total price: <b>{{total}}£</b> 
+				<br><br>
+				<input type="submit" value="Proceed to checkout"></p>
+			</form>
+		</div>
+		<br>
+		<br>
+		<div class="row">
+			{{#each items as |item|}}
+			{{#if item.center}}
+				<div class="columnCenter">
+					<div class="itemCenter">
+			{{else}} 
+			{{#if item.half}}
+				<div class="columnHalf">
+					<div class="itemHalf">
+			{{else}}
+			{{#if item.third}}
+				<div class="columnThird">
+					<div class="item">
+			{{else}}
+				<div class="column">
+					<div class="item">
+			{{/if}}
+			{{/if}}
+			{{/if}}
+						<h2>{{item.title}}</h2>
+						<table class="greyGridTable">
+							<thead>
+								<tr>
+									<th>Date: </th>
+									<th>{{item.date}}</th>
+								</tr>
+								<tr>
+									<th>Time: </th>
+									<th>{{item.time}}</th>
+								</tr>
+								<tr>
+									<th>Number of low seats: </th>
+									<th>{{item.lowBooked}}</th>
+								</tr>
+								<tr>
+									<th>Number of medium seats: </th>
+									<th>{{item.midBooked}}</th>
+								</tr>
+								<tr>
+									<th>Number of high seats: </th>
+									<th>{{item.highBooked}}</th>
+								</tr>
+								<tr>
+									<th>Price: </th>
+									<th>{{item.totalPrice}}£</th>
+								</tr>
+							</thead>
+						</table>
+						<form action="/deleteItem" method="POST">
+							<input type="hidden" name="itemID" value="{{item.id}}" />
+							<p><input type="submit" value="Delete this item"></p>
+						</form>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</body>
+</html>

@@ -1,0 +1,130 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Admin</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="../public/styles/adminPage.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+        <div class="oval">
+            <h1>ADMIN</h1>
+        </div>
+        <br>
+        <button type="button" onclick="window.location.href = '/';">Home</button>
+        <br>
+        <br>
+        <div class="item">
+            <p>Select a production to see ticket sales and income:
+            <form action="/income" method="GET">
+                <select name="production">
+                    {{#each titles as |item|}}
+                        <option value="{{item.title}}">{{item.title}}</option>
+                    {{/each}}
+                </select>
+                <input type="submit" value="See sales"></p>
+            </form>
+            <p>Select a production and number of shows to add to it:
+            <form action="/addShows" method="GET">
+                <select name="production">
+                    {{#each titles as |item|}}
+                        <option value="{{item.title}}">{{item.title}}</option>
+                    {{/each}}
+                </select>
+                <input type="number" name="numOfShows" min="1" placeholder="Number of shows" required />
+                <input type="submit" value="Add shows"></<input>
+            </form>
+        </div>
+        {{#if income}}
+        
+            <br>
+            <p>Production's <b>{{productionTitle}}</b> sales summary:</p>
+            <br>
+        <div class="result">
+            <p>Total amount of tickets sold:</p>
+            <table class="greyGridTable">
+                <thead>
+                    <tr>
+                        <th>Low priced</th>
+                        <th>Medium priced</th>
+                        <th>High priced</th>
+                        <th>Total income</th>              
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{{productionSales.low}}</th>
+                        <th>{{productionSales.mid}}</th>
+                        <th>{{productionSales.high}}</th>
+                        <th>{{productionSales.income}}£</th>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Individual shows ticket sales summary for <b>{{productionTitle}}</b> production:</p>
+            <table class="greyGridTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Beginning</th>
+                        <th>Ending</th>
+                        <th>Low priced</th>
+                        <th>Medium priced</th>
+                        <th>High priced</th>
+                        <th>Total income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each showSales as |item|}}
+                    <tr>
+                        <th>{{item.date}}</th>
+                        <th>{{item.timeFrom}}</th>
+                        <th>{{item.timeTo}}</th>
+                        <th>{{item.low}}</th>
+                        <th>{{item.mid}}</th>
+                        <th>{{item.high}}</th>
+                        <th>{{item.income}}£</th>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{/if}}
+        {{#if addShows}}
+        <br>
+        <div class="result">
+            <form action="/addShows" method="POST">
+                <table class="greyGridTable">
+                    <tr>
+                        <th>Date (yyyy/mm/dd)</th>
+                        <th>Starting</th>
+                        <th>Low price</th>
+                        <th>Medium price</th>
+                        <th>High price</th>
+                    </tr>
+                    <tbody>
+                        {{#each numberOfShowsObject}}
+                        <tr>
+                            <th><input type="text" name="date" placeholder="yyyy/mm/dd" required /></th>
+                            <th><select name="time">
+                                <option value="12:00">12:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="20:00">20:00</option>
+                            </select></th>
+                            <th><input type="number" name="low" min="0" placeholder="Low price" required /></th>
+                            <th><input type="number" name="mid" min="0" placeholder="Medium price" required /></th>
+                            <th><input type="number" name="high" min="0" placeholder="High price" required /></th>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                <input type="hidden" name="numberOfShows" value={{numberOfShows}} />
+                <input type="hidden" name="productionTitle" value="{{productionTitle}}" />
+                <p><input type="submit" value="Add shows"></p>
+            </form>
+        </div>
+        {{/if}}
+	</body>
+</html>

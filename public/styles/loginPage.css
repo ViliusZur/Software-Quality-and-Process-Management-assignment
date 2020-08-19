@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #E0ECF8;
+    text-align: center;
+}
+
+.oval {
+    margin: auto;
+    text-align: center;
+    width: 400px;
+    height: 75px;
+    background: white;
+    border: 2px solid #D8D8D8;
+    border-radius: 100px / 50px;
+}
+
+.centerLogin {
+    text-align: center;
+    margin: auto;
+    border: 2px solid #D8D8D8;
+    width: 20%;
+    padding: 1em;
+    background-color: white;
+}
+
+.centerRegister {
+    text-align: center;
+    margin: auto;
+    border: 2px solid #D8D8D8;
+    width: 50%;
+    padding: 1em;
+    background-color: white;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+.cardDetails {
+    padding-top: 3em;
+}

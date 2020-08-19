@@ -1,0 +1,88 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Production</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="../public/styles/productionPage.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+        <div class="oval">
+            <h1>PRODUCTION</h1>
+        </div>
+        <br>
+        <button type="button" onclick="window.location.href = '/';">Home</button>
+        <br>
+        <br>
+        <div class="row">
+            <div class="columnProduction">
+                <div class="production">
+                    <h2>{{title}}</h2>
+                    <img src={{posterURL}} alt="Production Poster" style="width:180px;height:279px;" />
+                    <p>{{description}}</p>
+                    <p>From: <b>{{shownFrom}}</b> To: <b>{{shownTo}}</b></p>
+                </div>
+            </div>
+            <div class="columnDetails">
+                <div class="details">
+                    <table class="greyGridTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Starts</th>
+                                <th>Ends</th>
+                                <th>Low price seats left</th>
+                                <th>Medium price seats left</th>
+                                <th>High price seats left</th>
+                                <th>Low price</th>
+                                <th>Medium price</th>
+                                <th>High price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each show as |item|}}
+                            <tr>
+                                <th>{{item.date}}</th>
+                                <th>{{item.timeFrom}}</th>
+                                <th>{{item.timeTo}}</th>
+                                <th>{{item.lowSeatsLeft}}</th>
+                                <th>{{item.midSeatsLeft}}</th>
+                                <th>{{item.highSeatsLeft}}</th>
+                                <th>{{item.lowPrice}}£</th>
+                                <th>{{item.midPrice}}£</th>
+                                <th>{{item.highPrice}}£</th>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <br>
+                    <div class="form">
+                        <p>To book tickets please select desired date and time: </p>
+                        <form action="/tickets" method="GET">
+                            <p>Select date: 
+                                <select name="date">
+                                    {{#each showDates}}
+                                    <option value={{this}}>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </p>
+                            <p>Select time:
+                                <select name="time">
+                                    <option value="12:00">12:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="20:00">20:00</option>
+                                </select>
+                            </p>
+                            <input type="hidden" name="id" value="{{productionID}}" />
+                            <input type="hidden" name="title" value="{{title}}" />
+                            <p><input type="submit" value="Book tickets"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

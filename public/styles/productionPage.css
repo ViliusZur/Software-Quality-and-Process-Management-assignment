@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #E0ECF8;
+    text-align: center;
+}
+
+.oval {
+    margin: auto;
+    text-align: center;
+    width: 400px;
+    height: 75px;
+    background: white;
+    border: 2px solid #D8D8D8;
+    border-radius: 100px / 50px;
+}
+
+.production {
+    text-align: center;
+    margin: auto;
+    border: 2px solid #D8D8D8;
+    width: 65%;
+    padding: 1em;
+    background-color: white;
+}
+
+.details {
+    text-align: center;
+    margin: auto;
+    border: 2px solid #D8D8D8;
+    width: 90%;
+    padding: 1em;
+    background-color: white;
+}
+
+.form {
+    text-align: left;
+}
+
+/* Create two columns that floats next to each other */
+.columnProduction {
+    float: left;
+    width: 30%;
+}
+
+.columnDetails {
+    float: left;
+    width: 70%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+.cardDetails {
+    padding-top: 3em;
+}
+
+/* CSS for tables */
+table.greyGridTable {
+    border: 1px solid #D3D3D3;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+table.greyGridTable td, table.greyGridTable th {
+    border: 1px solid #D3D3D3;
+    padding: 4px 4px;
+}
+table.greyGridTable tbody td {
+    font-size: 12px;
+}
+table.greyGridTable td:nth-child(even) {
+    background: #EBEBEB;
+}
+table.greyGridTable thead {
+    background: #FFFFFF;
+    border-bottom: 2px solid #333333;
+}
+table.greyGridTable thead th {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    border-left: 2px solid #333333;
+}
+table.greyGridTable thead th:first-child {
+    border-left: none;
+}
+table.greyGridTable tfoot td {
+    font-size: 14px;
+}

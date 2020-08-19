@@ -1,0 +1,101 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Payment</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="../public/styles/shoppingCart.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="oval">
+			<h1>PAYMENT</h1>
+		</div>
+		<br>
+		<button type="button" onclick="window.location.href = '/';">Home</button>
+		<br>
+		<h2>Booking summary</h2>
+		
+			
+			{{#if cardRegistered}}
+				<div class="summary">
+					<p>Total price: <b>{{total}}£</b>
+					<p>Card number: <b>{{cardNumber}}</b></p>
+					<p>Expiry date: <b>{{expiryDate}}</b></p> 
+					<form action="/payment" method="POST">
+						<p>CCV code:    <input placeholder="3 number CCV code"></p>
+						<p><input type="submit" value="Book tickets"></p>
+					</form></p>
+				</div>
+			{{else}}
+				<div class="summary">
+					<p>Total price: <b>{{total}}£</b>
+					<p>Please provide your payment details and proceed through checkout</p>
+					<form action="/payment" method="POST">
+						<p>Card number: <input placeholder="16 digit card number"></p>
+						<p>Expiry date: <input placeholder="mm/yyyy"></p>
+						<p>CCV code:    <input name="CCV" placeholder="3 number CCV code"></p>
+						<p><input type="submit" value="Book tickets"></p>
+					</form></p>
+				</div>
+			{{/if}}
+			<br>
+			<br>
+		</div>
+		<div class="row">
+			{{#each items as |item|}}
+				{{#if item.center}}
+				<div class="columnCenter">
+					<div class="itemCenter">
+			{{else}} 
+			{{#if item.half}}
+				<div class="columnHalf">
+					<div class="itemHalf">
+			{{else}}
+			{{#if item.third}}
+				<div class="columnThird">
+					<div class="item">
+			{{else}}
+				<div class="column">
+					<div class="item">
+			{{/if}}
+			{{/if}}
+			{{/if}}
+						<h2>{{item.title}}</h2>
+						<table class="greyGridTable">
+							<thead>
+								<tr>
+									<th>Date: </th>
+									<th>{{item.date}}</th>
+								</tr>
+								<tr>
+									<th>Time: </th>
+									<th>{{item.time}}</th>
+								</tr>
+								<tr>
+									<th>Number of low seats: </th>
+									<th>{{item.lowBooked}}</th>
+								</tr>
+								<tr>
+									<th>Number of medium seats: </th>
+									<th>{{item.midBooked}}</th>
+								</tr>
+								<tr>
+									<th>Number of high seats: </th>
+									<th>{{item.highBooked}}</th>
+								</tr>
+								<tr>
+									<th>Price: </th>
+									<th>{{item.totalPrice}}£</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			{{/each}}
+			<br>
+		</div>
+	</body>
+</html>

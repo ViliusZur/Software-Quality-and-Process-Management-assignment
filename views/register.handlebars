@@ -1,0 +1,44 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Create an Account</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="../public/styles/loginPage.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="oval">
+			<h1>CREATE AN ACCOUNT</h1>
+		</div>
+		<br>
+		<button type="button" onclick="window.location.href = '/';">Home</button>
+		<br>
+		<br>
+		<div class="centerRegister">
+			<form action="/register" enctype="multipart/form-data" method="post">
+				<div class="row">
+					<div class="column">
+						<p>Username:<br /><input type="text" name="user" placeholder="your preferred username" value=""></p>
+						<p>E-mail:<br /><input type="text" name="email" placeholder="your e-mail" value=""></p>
+						<p>Password:<br /><input type="password" name="pass" placeholder="your chosen password" value=""></p>
+						<p>Profile Picture:<br />
+						<div>
+							<input type="file" name="avatar"></p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="cardDetails">
+							<b>Card details for payment (not necessary)</b>
+							<p>Card number:<br /><input type="text" name="cardNum" placeholder="your card's number (no spaces)" value=""></p>
+							<p>Expiry date (mm/yyyy):<br /><input type="text" name="expDate" placeholder="expiry date" value=""></p>
+						</div>
+					</div>
+				</div>
+				<p><input type="submit" value="Create"></p>
+			</form>
+		</div>
+	</body>
+</html>

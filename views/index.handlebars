@@ -1,0 +1,75 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Home Page</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="../public/styles/indexPage.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="oval">
+			<h1>HOME</h1>
+		</div>
+		<br>
+		{{#if loggedin}}
+			<p>Hello, {{username}}!</p>
+			<button type="button" onclick="window.location.href = '/logout';">Log out</button>
+			{{#if admin}}
+				<button type="button" onclick="window.location.href = '/admin';">Admin page</button>
+			{{/if}}
+			<form action="/shoppingCart" method="GET">
+				<p><input type="submit" value="Shopping cart ({{numOfShoppingItems}})"></p>
+			</form>
+		{{else}}
+			<button type="button" onclick="window.location.href = '/login';">Log in</button>
+			<button type="button" onclick="window.location.href = '/register';">Register</button>
+			<p>Users need to have a valid account and be logged in to select and book tickets for shows.</p>
+		{{/if}}
+			<h2>Currently running production:</h2>
+			<div class="currentProduction">
+				<h2>{{title}}</h2>
+				<img src={{posterURL}} alt="Production Poster" style="width:180px;height:279px;" />
+				<p>{{description}}</p>
+				<p>From: <b>{{shownFrom}}</b> To: <b>{{shownTo}}</b></p>
+		{{#if loggedin}}
+			<button type="button" onclick="window.location.href = '/production?id={{id}}';">See details</button>
+		{{else}}
+			<button type="button" disabled>See more</button>
+		{{/if}}
+			</div>
+			<br>
+			<h2>Upcomming productions:</h2>
+		{{#if loggedin}}
+			<div class="row">	
+			{{#each upcommingProductions as |item|}}
+				<div class="column">
+					<div class="upcommingProduction">
+						<h2>{{item.title}}</h2>
+						<img src={{item.posterURL}} alt="Production Poster" style="width:180px;height:279px;" />
+						<p>{{item.description}}</p>
+						<p>From: <b>{{item.shownFrom}}</b> To: <b>{{item.shownTo}}</b></p>
+						<button type="button" onclick="window.location.href = '/production?id={{item.id}}';">See details</button>	
+					</div>
+				</div>
+			{{/each}}
+			</div>
+		{{else}}
+			<div class="row">			
+			{{#each upcommingProductions as |item|}}
+				<div class="column">
+					<div class="upcommingProduction">
+						<h2>{{item.title}}</h2>
+						<img src={{item.posterURL}} alt="Production Poster" style="width:180px;height:279px;" />
+						<p>{{item.description}}</p>
+						<p>From: <b>{{item.shownFrom}}</b> To: <b>{{item.shownTo}}</b></p>
+						<button type="button" disabled>See more</button>
+					</div>	
+				</div>
+			{{/each}}
+			</div>
+		{{/if}}
+	</body>
+</html>

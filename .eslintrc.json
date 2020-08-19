@@ -1,0 +1,65 @@
+
+{
+  "env": {
+    "es6": true,
+    "jasmine": true,
+    "node": true,
+    "browser": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "rules": {
+    "arrow-body-style": "error",
+    "arrow-spacing": ["warn", {"before": true, "after": true}],
+    "brace-style": "error",
+    "camelcase": ["error", {"properties": "never"}],
+    "complexity": ["error", 10],
+    "eol-last": "warn",
+    "eqeqeq": "error",
+    "func-call-spacing": ["error", "never"],
+    "handle-callback-err": "warn",
+    "key-spacing": ["error", {"beforeColon": false, "afterColon": true}],
+    "linebreak-style": ["warn", "windows"],
+    "max-depth": ["error", 10],
+    "max-len": ["warn", { "code": 200, "tabWidth": 4 }],
+    "max-lines": ["warn", {"max": 300, "skipBlankLines": true, "skipComments": true}],
+    "max-lines-per-function": ["warn", {"max": 100, "skipBlankLines": true, "skipComments": true}],
+    "max-nested-callbacks": ["error", 4],
+    "max-params": ["error", 10],
+    "max-statements": ["error", 50],
+    "no-cond-assign": "error",
+    "no-dupe-args": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-empty": "warn",
+    "no-multiple-empty-lines": "warn",
+    "no-extra-parens": "error",
+    "no-func-assign": "error",
+    "no-irregular-whitespace": "error",
+    "no-multi-spaces": "warn",
+    "no-multi-str": "off",
+    "no-unexpected-multiline": "error",
+    "no-unreachable": "error",
+    "no-self-assign": "error",
+    "no-undef": "error",
+    "no-unused-vars": "warn",
+    "no-var": 2,
+    "prefer-const": "error",
+    "quotes": ["warn", "single"],
+    "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }],
+    "strict": ["error", "global"],
+    "yoda": "error"
+	},
+	"overrides": [{
+		"files": [ "*.test.js", "*.spec.js", "*.steps.js" ],
+		"rules": {
+      "global-require": "off",
+			"max-lines-per-function": "off",
+			"max-lines": "off",
+			"max-statements": "off",
+			"no-magic-numbers": "off"
+		}
+	}]
+}
